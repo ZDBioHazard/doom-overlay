@@ -1,0 +1,43 @@
+Index: Makefile
+===================================================================
+--- Makefile	(revision 3160)
++++ Makefile	(working copy)
+@@ -1,23 +1,8 @@
+-# get the target for the compiler
+-target = $(strip $(shell $(CC) -dumpmachine))
+-
+ # DOS and Windows executables should have the .exe extension.
+ # Other operating systems should be extension-less.
+ 
+-CC = gcc
+-
+-ifeq ($(findstring mingw32,$(target)),mingw32)
+-EXENAME = acc.exe
+-else
+-ifeq ($(findstring djgpp,$(target)),djgpp)
+-EXENAME = acc.exe
+-else
+ EXENAME = acc
+-endif
+-endif
+ 
+-CFLAGS = -Os -Wall -W -fomit-frame-pointer
+-LDFLAGS = -s
+ VERNUM = 150
+ 
+ OBJS = \
+@@ -133,14 +118,3 @@
+ clean:
+ 	rm -f $(OBJS) $(EXENAME)
+ 
+-# These targets can only be made with MinGW's make and not DJGPP's, because
+-# they use Win32 tools.
+-
+-zipsrc: $(SRCS)
+-	kzip /y acc$(VERNUM)-src.zip $(SRCS) "End User License ACC Source Code.doc"
+-
+-zipbin: $(EXENAME) $(ACS)
+-	kzip /y acc$(VERNUM).zip $(EXENAME) $(ACS)
+-
+-zipwbin: Release/acc.exe $(ACS)
+-	kzip /y acc$(VERNUM)win.zip Release/acc.exe $(ACS)
