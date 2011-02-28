@@ -1,0 +1,24 @@
+# Mmmm, an ebuild for my own project. Sexy.
+EAPI="2"
+inherit games qt4-r2 git
+
+DESCRIPTION="A Doom engine frontend designed with ease-of-use and flexibility in mind."
+HOMEPAGE="https://github.com/ZDBioHazard/ZDL/"
+EGIT_REPO_URI="https://github.com/ZDBioHazard/ZDL.git"
+
+LICENSE="GPL-3"
+SLOT="0"
+
+KEYWORDS=""
+IUSE=""
+RDEPEND=">=x11-libs/qt-gui-4.7"
+
+src_install() {
+	# Who decided the application name should be in all caps?!
+	mv ZDL ${PN}
+	dogamesbin ${PN} || die "Couldn't install the binary! D:"
+
+	doicon ${FILESDIR}/${PN}.svg
+	make_desktop_entry ${PN} "ZDL"
+}
+
