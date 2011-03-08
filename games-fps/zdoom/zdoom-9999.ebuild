@@ -1,3 +1,7 @@
+# Copyright 1999-2011 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 # I originally swiped this from someone's bug
 # report, but I've chopped it to bits over time.
 EAPI="2"
