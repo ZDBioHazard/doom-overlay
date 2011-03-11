@@ -19,10 +19,9 @@ RDEPEND=">=x11-libs/qt-gui-4.7"
 
 src_install() {
 	# Who decided the application name should be in all caps?!
-	mv ZDL ${PN}
 	dogamesbin ${PN} || die "Couldn't install the binary! D:"
 
-	doicon ${FILESDIR}/${PN}.svg
+	doicon res/${PN}.svg
 	make_desktop_entry ${PN} "ZDL"
 }
 
