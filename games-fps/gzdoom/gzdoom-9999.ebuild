@@ -26,9 +26,12 @@ RDEPEND="
 	media-sound/fluidsynth
 "
 
+ZDOOM_DIR="${GAMES_DATADIR}/${PN}"
+
 src_prepare() {
 	# Use default game data path.
-	sed -ie "s:/usr/local/share/:${GAMES_DATADIR}/${PN}/:" src/sdl/i_system.h || die
+	einfo "Fixing the file path in src/sdl/i_system.h."
+	sed -ie "s:/usr/local/share/:${ZDOOM_DIR}/:" src/sdl/i_system.h || die
 }
 
 src_configure() {
@@ -51,7 +54,7 @@ src_install() {
 	dogamesbin ${PN} || die
 
 	# Install zdoom.pk3.
-	insinto "${GAMES_DATADIR}/${PN}"
+	insinto ${ZDOOM_DIR}
 	doins ${PN}.pk3 || die
 
 	# So make a desktop entry.
@@ -64,10 +67,11 @@ src_install() {
 pkg_postinst() {
 	games_pkg_postinst
 
-	elog "Before you can play, you need to do one of the following:"
-	elog " - Copy or link wad files into ${GAMES_DATADIR}/${PN}/"
+	elog "Before you can play ${PN}, you must do one of the following:"
+	elog " - Copy or link IWAD files into ${ZDOOM_DIR}"
 	elog "    (The files must be readable by the 'games' group)."
-	elog " - Add your IWAD directory to your ~/zdoom.ini file."
+	elog " - Add your IWAD directory to your ~/.${PN}/zdoom.ini"
+	elog "    file in the [IWADSearch.Directories] section."
 	elog " - Start ${PN} with the -iwad <iwadpath> option."
 	elog " - Get ZDL. (games-util/zdl) ;)"
 	elog
