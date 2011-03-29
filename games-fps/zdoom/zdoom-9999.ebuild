@@ -58,7 +58,7 @@ src_install() {
 	doins ${PN}.pk3 || die
 
 	# So make a desktop entry.
-	doicon ${FILESDIR}/${PN}.svg
+	doicon ${FILESDIR}/${PN}.png
 	make_desktop_entry ${PN} "ZDoom"
 
 	prepgamesdirs
