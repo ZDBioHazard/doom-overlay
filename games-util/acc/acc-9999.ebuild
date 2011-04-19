@@ -18,10 +18,7 @@ IUSE=""
 RDEPEND=""
 
 src_prepare() {
-	epatch ${FILESDIR}/${PN}-custom_cflags.patch
-
 	# Add the game data path to the include list.
-	epatch ${FILESDIR}/${PN}-add_usr_include_path.patch
 	sed -ie "s:/usr/local/share/:${GAMES_DATADIR}/:" acc.c || die
 }
 
