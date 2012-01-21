@@ -22,7 +22,7 @@ RDEPEND="
 	media-libs/libsdl
 	media-libs/fmod:1
 	media-libs/flac
-	media-libs/jpeg
+	virtual/jpeg
 	media-sound/fluidsynth
 "
 
