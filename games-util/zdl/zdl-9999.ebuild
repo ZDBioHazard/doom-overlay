@@ -4,11 +4,13 @@
 
 # Mmmm, an ebuild for my own project. Sexy.
 EAPI="2"
-inherit games qt4-r2 git
+inherit games qt4-r2 git-2
 
 DESCRIPTION="A Doom engine frontend designed with ease-of-use and flexibility in mind."
 HOMEPAGE="https://github.com/ZDBioHazard/ZDL/"
-EGIT_REPO_URI="https://github.com/ZDBioHazard/ZDL.git"
+EGIT_REPO_URI="
+	  git://github.com/ZDBioHazard/ZDL.git
+	https://github.com/ZDBioHazard/ZDL.git"
 
 LICENSE="GPL-3"
 SLOT="0"
