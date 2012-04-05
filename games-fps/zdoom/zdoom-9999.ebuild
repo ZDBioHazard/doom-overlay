@@ -15,7 +15,7 @@ LICENSE="DOOMLIC BUILDLIC BSD"
 SLOT="0"
 
 KEYWORDS=""
-IUSE="mmx gtk"
+IUSE="mmx gtk biostyle"
 RDEPEND="
 	mmx? ( || ( dev-lang/nasm dev-lang/yasm ) )
 	gtk? ( x11-libs/gtk+:2 )
@@ -32,6 +32,11 @@ src_prepare() {
 	# Use default game data path.
 	einfo "Fixing the file path in src/sdl/i_system.h."
 	sed -ie "s:/usr/local/share/:${ZDOOM_DIR}/:" src/sdl/i_system.h || die
+
+	# Apply Bio's config patch if desired.
+	if use biostyle; then
+		epatch ${FILESDIR}/${PN}-bioconfig.patch
+	fi
 }
 
 src_configure() {
