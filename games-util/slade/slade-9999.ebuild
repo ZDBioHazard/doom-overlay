@@ -3,17 +3,17 @@
 # $Header: $
 
 EAPI="2"
-inherit games wxwidgets cmake-utils subversion
+inherit games wxwidgets cmake-utils git-2
 
 DESCRIPTION="Slayer's Leet-Ass Doom Editor"
 HOMEPAGE="http://slade.mancubus.net/"
-ESVN_REPO_URI="http://mancubus.net/svn/hosted/slade/trunk/"
+EGIT_REPO_URI="https://github.com/sirjuddington/SLADE.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="+acc +zdbsp"
+
 RDEPEND="
 	sys-libs/zlib
 	app-arch/bzip2
@@ -23,7 +23,6 @@ RDEPEND="
 	>=x11-libs/wxGTK-2.9
 	>=media-sound/fluidsynth-1.1
 	>=media-libs/freeimage-3.15
-	>=media-libs/libsfml-1.6
 	>=media-libs/ftgl-2.1
 	>=media-libs/glew-1.9
 	>=media-libs/freetype-2.4

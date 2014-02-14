@@ -4,22 +4,20 @@
 
 # I don't think there's actually a use for ZDBSP yet, but here it is anyway.
 EAPI="2"
-inherit games cmake-utils subversion eutils
+inherit eutils games cmake-utils git-2
 
 DESCRIPTION="This is a standalone version of ZDoom's internal node builder"
 HOMEPAGE="http://zdoom.org/"
-ESVN_REPO_URI="http://mancubus.net/svn/hosted/zdoom/zdbsp/trunk/"
+EGIT_REPO_URI="https://github.com/rheit/zdbsp.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-
-KEYWORDS=""
-IUSE=""
-RDEPEND=""
+KEYWORDS="~amd64 ~x86"
+IUSE="doc"
 
 src_install() {
 	# Does anyone really care about the docs?
-	dohtml *.{html,png} || die
+	use doc && ( dohtml *.{html,png} || die )
 
 	# Binary.
 	cd "${CMAKE_BUILD_DIR}" || die

@@ -2,20 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# I originally swiped this from someone's bug
-# report, but I've chopped it to bits over time.
 EAPI="2"
-inherit games cmake-utils subversion eutils
+inherit eutils games cmake-utils git-2
 
 DESCRIPTION="Enhanced OpenGL port of the official DOOM source code that also supports Heretic, Hexen, and Strife"
 HOMEPAGE="http://grafzahl.drdteam.org/"
-ESVN_REPO_URI="http://mancubus.net/svn/hosted/gzdoom/trunk/"
+EGIT_REPO_URI="https://github.com/coelckers/gzdoom.git"
 
 LICENSE="DOOMLIC BUILDLIC BSD"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="mmx gtk"
 
-KEYWORDS=""
-IUSE="mmx gtk biostyle"
 RDEPEND="
 	mmx? ( || ( dev-lang/nasm dev-lang/yasm ) )
 	gtk? ( x11-libs/gtk+:2 )
@@ -32,11 +30,6 @@ src_prepare() {
 	# Use default game data path.
 	einfo "Fixing the file path in src/sdl/i_system.h."
 	sed -ie "s:/usr/local/share/:${ZDOOM_DIR}/:" src/sdl/i_system.h || die
-
-	# Apply Bio's config patch if desired.
-	if use biostyle; then
-		epatch ${FILESDIR}/${PN}-bioconfig.patch
-	fi
 }
 
 src_configure() {
@@ -78,7 +71,6 @@ pkg_postinst() {
 	elog " - Add your IWAD directory to your ~/.${PN}/zdoom.ini"
 	elog "    file in the [IWADSearch.Directories] section."
 	elog " - Start ${PN} with the -iwad <iwadpath> option."
-	elog " - Get ZDL. (games-util/zdl) ;)"
 	elog
 	elog "To play, run: \"${PN}\" (and add options and stuff)"
 }

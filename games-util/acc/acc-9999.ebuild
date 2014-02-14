@@ -2,20 +2,17 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Yay ACC. Don't know if it works with SLADE.
 EAPI="2"
-inherit games subversion eutils
+inherit eutils games git-2
 
 DESCRIPTION="ACS script compiler for use with ZDoom and/or Hexen"
 HOMEPAGE="http://zdoom.org/"
-ESVN_REPO_URI="http://mancubus.net/svn/hosted/zdoom/acc/trunk/"
+EGIT_REPO_URI="https://github.com/rheit/acc.git"
 
 LICENSE="DOOMLIC BSD"
 SLOT="0"
-
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
-RDEPEND=""
 
 src_prepare() {
 	# Add the game data path to the include list.
